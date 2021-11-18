@@ -1,8 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
+import store from './store'
+import './assets/tailwind.css'
+import i18n from './i18n'
+import router from './router'
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+  store,
+  i18n,
+  router,
+  render: h => h(App)
 }).$mount('#app')
