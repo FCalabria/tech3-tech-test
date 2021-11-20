@@ -1,5 +1,5 @@
 <template>
-  <div class="items-list space-y-4 flex flex-col overflow-y-auto">
+  <div class="items-list space-y-4 overflow-y-auto">
     <Item
       v-for="item in data"
       :key="item.guid"

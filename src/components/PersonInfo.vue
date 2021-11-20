@@ -1,5 +1,8 @@
 <template>
-  <Card class="flex-grow" title-classes="bg-blue-100">
+  <Card
+    class="flex-grow"
+    title-classes="bg-blue-100"
+  >
     <template v-slot:title>
       <h2 class="font-bold">
         {{ title }}

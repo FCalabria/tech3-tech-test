@@ -1,5 +1,5 @@
 <template>
-  <div :class="`h-screen grid p-3 gap-3 ${$attrs.itemIndex ? 'md:grid-cols-2' : ''}`">
+  <div :class="`home h-screen grid md:grid-rows-1 p-3 gap-3 overflow-hidden ${$attrs.itemIndex ? 'grid-rows-2 md:grid-cols-2' : 'grid-rows-1'}`">
     <Spinner
       v-if="loading"
       class="justify-self-center place-self-center"
