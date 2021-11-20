@@ -1,6 +1,5 @@
 <template>
-  <div class="items-list space-y-4">
-    <!-- TODO: scrollable -->
+  <div class="items-list space-y-4 flex flex-col overflow-y-auto">
     <Item
       v-for="item in data"
       :key="item.guid"
@@ -28,3 +27,8 @@ export default {
   },
 }
 </script>
+<style scoped>
+.items-list {
+  scroll-snap-type: y mandatory;
+}
+</style>

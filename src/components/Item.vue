@@ -1,5 +1,6 @@
 <template>
   <Card
+    class="item"
     title-classes="bg-blue-900 text-white"
     content-classes="flex justify-between"
   >
@@ -73,3 +74,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.item {
+  scroll-snap-align: start;
+}
+</style>
