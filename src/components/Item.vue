@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     createdDate: function () {
-      return new Date(this.created).toLocaleString(undefined, {day: '2-digit', month: '2-digit' , year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false})
+      return this.$d(new Date(this.created), 'shortTime')
     },
     statusColor: function () {
       return this.status === 'DECLINED' ? 'text-red-800' : 'text-green-800'
