@@ -1,4 +1,4 @@
-# challenge-tech3
+# challenge-form3
 
 ## Project setup
 ```
