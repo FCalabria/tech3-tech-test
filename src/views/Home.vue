@@ -1,5 +1,5 @@
 <template>
-  <div :class="`home h-screen grid md:grid-rows-1 p-3 gap-3 overflow-hidden ${$attrs.itemIndex ? 'grid-rows-2 md:grid-cols-2' : 'grid-rows-1'}`">
+  <div :class="`home h-screen grid md:grid-rows-1 p-3 gap-5 overflow-hidden ${$attrs.itemIndex ? 'grid-rows-2 md:grid-cols-2' : 'grid-rows-1'}`">
     <Spinner
       v-if="loading"
       class="justify-self-center place-self-center"
@@ -8,22 +8,26 @@
       v-else
       :data="transferData"
     />
-    <div v-if="selectedItem">
+    <div
+      v-if="selectedItem"
+      class="flex flex-col"
+    >
       <ItemDetail
         :debtor="selectedItem.attributes.debtor"
         :beneficiary="selectedItem.attributes.beneficiary"
       />
-      <SimilarEntries />
+      <SimilarEntries :selected-item="selectedItem" />
     </div>
   </div>
 </template>
 
 <script>
+import Spinner from 'vue-simple-spinner'
 import { mapActions, mapState } from 'vuex'
 import ItemsList from '@/components/ItemsList.vue'
 import ItemDetail from '@/components/ItemDetail.vue'
 import SimilarEntries from '@/components/SimilarEntries.vue'
-import Spinner from 'vue-simple-spinner'
+import selectedItem from '@/mixins/selectedItem'
 
 export default {
   name: 'Home',
@@ -33,18 +37,14 @@ export default {
     SimilarEntries,
     Spinner
   },
+  mixins: [
+    selectedItem
+  ],
   computed: {
     ...mapState({
       transferData: state => state.transferHistory.data,
       loading: state => state.transferHistory.loading
-    }),
-    selectedItem: function () {
-      if (!this.transferData || !this.$attrs.itemIndex) {
-        return {}
-      } else {
-        return this.transferData[this.$attrs.itemIndex]
-      }
-    }
+    })
   },
   created() {
     this.fetchTransferHistory()

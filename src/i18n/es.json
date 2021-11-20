@@ -8,5 +8,6 @@
     "name": "Nombre",
     "sortCode": "Sort code",
     "account": "Número de cuenta"
-  }
+  },
+  "similarEntries": "Entradas similares"
 }
