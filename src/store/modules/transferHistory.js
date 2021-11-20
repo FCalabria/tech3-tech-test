@@ -15,7 +15,12 @@ export default {
   },
   mutations: {
     [MUTATIONS.SET_DATA] (state, payload) {
-      Vue.set(state, 'data', payload)
+      Vue.set(state, 'data', payload.map(entry => {
+        if (entry.created) {
+          entry.created = new Date(entry.created)
+        }
+        return entry
+      }))
     },
     [MUTATIONS.SET_ERROR] (state, payload) {
       if (payload.message) {

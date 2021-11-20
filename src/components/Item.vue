@@ -53,15 +53,15 @@ export default {
     },
     created: {
       required: true,
-      type: String,
+      type: Date,
       validator: (value) => {
-        return Date(value) !== 'Invalid Date'
+        return value.toString() !== 'Invalid Date'
       }
     }
   },
   computed: {
     createdDate: function () {
-      return this.$d(new Date(this.created), 'shortTime')
+      return this.$d(this.created, 'shortTime')
     },
     statusColor: function () {
       return this.status === 'DECLINED' ? 'text-red-800' : 'text-green-800'

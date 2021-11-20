@@ -54,6 +54,21 @@ describe('Transfer History module', () => {
       await store.dispatch('transferHistory/getAll')
       expect(store.state.transferHistory).toHaveProperty('data', mockData)
     })
+    test('It should parser the result before setting it', async () => {
+      const mockData = [
+        {index: 0, created: 'Mon Nov 24 2003 10:39:50 GMT+0000 (UTC)'},
+        {index: 1, created: 'Sat Jun 24 2006 03:30:05 GMT+0000 (UTC)'},
+        {index: 2},
+        {index: 3}
+      ]
+      fetch.get.mockReturnValue(Promise.resolve(mockData))
+      await store.dispatch('transferHistory/getAll')
+      const data = store.state.transferHistory.data
+      expect(data[0].created).toBeInstanceOf(Date)
+      expect(data[1].created).toBeInstanceOf(Date)
+      expect(data[2].created).toBeUndefined()
+      expect(data[3].created).toBeUndefined()
+    })
     test('it should set loading as true while the promise is not fulfilled', () => {
       let resolver
       fetch.get.mockReturnValue(new Promise((resolve) => {
