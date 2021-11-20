@@ -9,7 +9,12 @@ import VueCurrencyFilter from 'vue-currency-filter'
 import './assets/tailwind.css'
 
 Vue.config.productionTip = false
-Vue.use(VueCurrencyFilter)
+Vue.use(VueCurrencyFilter, {
+  symbol: '€',
+  symbolPosition: 'back',
+  thousandsSeparator: ',',
+  fractionSeparator: '.'
+})
 
 new Vue({
   store,

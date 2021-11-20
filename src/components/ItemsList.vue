@@ -1,5 +1,5 @@
 <template>
-  <div class="items-list">
+  <div class="items-list space-y-4 m-3">
     <Item
       v-for="item in data"
       :key="item.guid"
