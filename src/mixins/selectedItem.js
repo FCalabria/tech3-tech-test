@@ -6,10 +6,10 @@ export default {
       transferData: state => state.transferHistory.data
     }),
     selectedItem: function () {
-      if (!this.transferData || !this.$attrs.itemIndex) {
+      if (!this.transferData || !this.$route.params.itemIndex) {
         return undefined
       } else {
-        return this.transferData[this.$attrs.itemIndex]
+        return this.transferData[this.$route.params.itemIndex]
       }
     }
   }

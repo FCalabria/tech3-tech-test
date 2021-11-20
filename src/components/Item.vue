@@ -1,19 +1,21 @@
 <template>
   <Card
-    class="item"
+    :class="`item border-2 ${isSelected ? 'bg-blue-100 border-blue-600' : 'border-blue-900'}`"
     title-classes="bg-blue-900 text-white"
     content-classes="flex justify-between"
   >
     <template v-slot:title>
       <span class="text-xs">{{ index }}</span>
-      <span class="font-bold ml-3 capitalize">{{ type }}</span>
-      <time class="text-sm text-blue-200 ml-auto">{{ createdDate }}</time>
-      <router-link
-        class="ml-3 link-negative"
-        :to="{path: `/detail/${index}`}"
-      >
-        {{ $t('actions.detail') }}
-      </router-link>
+      <span class="font-bold mx-3 capitalize">{{ type }}</span>
+      <div class="flex items-end md:items-center flex-col md:flex-row ml-auto">
+        <time class="text-sm text-blue-200 order-2 md:order-1">{{ createdDate }}</time>
+        <router-link
+          class="ml-3 link-negative order-1 md:order-2"
+          :to="{path: `/detail/${index}`}"
+        >
+          {{ $t('actions.detail') }}
+        </router-link>
+      </div>
     </template>
     <template v-slot:content>
       <span :class="[statusColor]">{{ status }}</span>
@@ -65,6 +67,9 @@ export default {
     },
     statusColor: function () {
       return this.status === 'DECLINED' ? 'text-red-800' : 'text-green-800'
+    },
+    isSelected: function () {
+      return this.$route.params.itemIndex && this.$route.params.itemIndex === this.index.toString()
     }
   },
   methods: {
