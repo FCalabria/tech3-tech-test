@@ -1,3 +1,12 @@
 {
-  "message": "hello i18n!"
+  "actions": {
+    "detail": "See detail"
+  },
+  "debtor": "Debtor",
+  "beneficiary": "Beneficiary",
+  "person": {
+    "name": "Name",
+    "sortCode": "Sort code",
+    "account": "Account number"
+  }
 }

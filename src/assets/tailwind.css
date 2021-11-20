@@ -7,3 +7,18 @@
 body {
   @apply text-gray-800
 }
+a {
+  @apply text-cyan-800;
+}
+a:hover,
+a:focus {
+  @apply text-cyan-600;
+}
+
+a.link-negative {
+  @apply text-cyan-100;
+}
+a.link-negative:hover,
+a.link-negative:focus {
+  @apply text-cyan-300;
+}

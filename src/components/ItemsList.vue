@@ -1,5 +1,6 @@
 <template>
-  <div class="items-list space-y-4 m-3">
+  <div class="items-list space-y-4">
+    <!-- TODO: scrollable -->
     <Item
       v-for="item in data"
       :key="item.guid"

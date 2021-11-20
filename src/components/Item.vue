@@ -1,19 +1,32 @@
 <template>
-  <div class="shadow rounded-sm">
-    <div class="p-3 bg-blue-900 text-white flex items-center">
+  <Card
+    title-classes="bg-blue-900 text-white"
+    content-classes="flex justify-between"
+  >
+    <template v-slot:title>
       <span class="text-xs">{{ index }}</span>
       <span class="font-bold ml-3 capitalize">{{ type }}</span>
-      <span class="text-sm text-blue-200 ml-auto">{{ createdDate }}</span>
-    </div>
-    <div class="p-3 flex justify-between">
+      <time class="text-sm text-blue-200 ml-auto">{{ createdDate }}</time>
+      <router-link
+        class="ml-3 link-negative"
+        :to="{path: `/detail/${index}`}"
+      >
+        {{ $t('actions.detail') }}
+      </router-link>
+    </template>
+    <template v-slot:content>
       <span :class="[statusColor]">{{ status }}</span>
       <span class="text-lg">{{ amount | currency }}</span>
-    </div>
-  </div>
+    </template>
+  </Card>
 </template>
 <script>
+import Card from './Card.vue'
 export default {
   name: 'Item',
+  components: {
+    Card
+  },
   props: {
     index: {
       required: true,
@@ -51,6 +64,11 @@ export default {
     },
     statusColor: function () {
       return this.status === 'DECLINED' ? 'text-red-800' : 'text-green-800'
+    }
+  },
+  methods: {
+    detailClicked () {
+      this.$emit('detail')
     }
   }
 }
