@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
-import './assets/tailwind.css'
 import i18n from './i18n'
 import router from './router'
+import VueCurrencyFilter from 'vue-currency-filter'
+
+
+import './assets/tailwind.css'
 
 Vue.config.productionTip = false
+Vue.use(VueCurrencyFilter)
 
 new Vue({
   store,

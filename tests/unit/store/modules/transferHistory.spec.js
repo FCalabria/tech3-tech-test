@@ -25,6 +25,18 @@ describe('Transfer History module', () => {
       }
     })
   })
+  describe('initial state', () => {
+    test('it should define data as an empty array', () => {
+      expect(store.state.transferHistory).toHaveProperty('data')
+      expect(store.state.transferHistory.data).toEqual([])
+    })
+    test('it should define error as an empty string', () => {
+      expect(store.state.transferHistory).toHaveProperty('error', '')
+    })
+    test('it should define loading as false', () => {
+      expect(store.state.transferHistory).toHaveProperty('loading', false)
+    })
+  })
   describe('getAll', () => {
     test('It should call the data endpoint with the correct params', async () => {
       await store.dispatch('transferHistory/getAll')
@@ -41,6 +53,30 @@ describe('Transfer History module', () => {
       fetch.get.mockReturnValue(Promise.resolve(mockData))
       await store.dispatch('transferHistory/getAll')
       expect(store.state.transferHistory).toHaveProperty('data', mockData)
+    })
+    test('it should set loading as true while the promise is not fulfilled', () => {
+      let resolver
+      fetch.get.mockReturnValue(new Promise((resolve) => {
+        resolver = resolve
+      }))
+      store.dispatch('transferHistory/getAll')
+      expect(store.state.transferHistory.loading).toBeTruthy()
+      resolver()
+    })
+    test('it should set loading as false when the promise is fulfilled', async () => {
+      await store.dispatch('transferHistory/getAll')
+      await localVue.nextTick() // resolve until the finally
+      expect(store.state.transferHistory.loading).toBeFalsy()
+
+      fetch.get.mockReturnValue(Promise.reject(''))
+      await store.dispatch('transferHistory/getAll')
+      await localVue.nextTick()
+      expect(store.state.transferHistory.loading).toBeFalsy()
+    })
+    test('it should set the error if the promise rejects', async () => {
+      fetch.get.mockReturnValue(Promise.reject(new Error('Failed')))
+      await store.dispatch('transferHistory/getAll')
+      expect(store.state.transferHistory.error).toEqual('Failed')
     })
   })
 })
