@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-4">
+  <div class="md:space-y-4 flex md:block space-x-2 md:space-x-0 items-stretch">
     <PersonInfo
       :title="$t('debtor')"
       :name="`${debtor.first_name} ${debtor.last_name}`"

@@ -1,5 +1,5 @@
 <template>
-  <div :class="`h-screen grid p-3 gap-3 ${$attrs.itemIndex ? 'grid-cols-2' : ''}`">
+  <div :class="`h-screen grid p-3 gap-3 ${$attrs.itemIndex ? 'md:grid-cols-2' : ''}`">
     <Spinner
       v-if="loading"
       class="justify-self-center place-self-center"
@@ -9,7 +9,10 @@
       :data="transferData"
     />
     <div v-if="selectedItem">
-      <ItemDetail :debtor="selectedItem.attributes.debtor" :beneficiary="selectedItem.attributes.beneficiary"/>
+      <ItemDetail
+        :debtor="selectedItem.attributes.debtor"
+        :beneficiary="selectedItem.attributes.beneficiary"
+      />
       <SimilarEntries />
     </div>
   </div>
