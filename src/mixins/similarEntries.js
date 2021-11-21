@@ -11,12 +11,12 @@ export default {
       transferData: state => state.transferHistory.data
     }),
     similarEntries () {
-      if (!this.selectedItem || !this.transferData) {
+      if (!this.selectedItem || !this.transferData || this.transferData.length === 0) {
         return []
       }
-      const {type, status} = this.selectedItem
+      const {type, status, guid} = this.selectedItem
       return this.transferData
-        .filter(entry => entry.type === type && entry.status === status)
+        .filter(entry => entry.type === type && entry.status === status && entry.guid !== guid)
     }
   }
 }

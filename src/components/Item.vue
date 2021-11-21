@@ -71,11 +71,6 @@ export default {
     isSelected: function () {
       return this.$route.params.itemIndex && this.$route.params.itemIndex === this.index.toString()
     }
-  },
-  methods: {
-    detailClicked () {
-      this.$emit('detail')
-    }
   }
 }
 </script>
