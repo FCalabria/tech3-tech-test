@@ -3,6 +3,7 @@
     <Spinner
       v-if="loading"
       class="justify-self-center place-self-center"
+      data-testid="loading-spinner"
     />
     <ItemsList
       v-else
@@ -11,6 +12,7 @@
     <div
       v-if="selectedItem"
       class="flex flex-col"
+      data-testid="detail-section"
     >
       <ItemDetail
         :debtor="selectedItem.attributes.debtor"

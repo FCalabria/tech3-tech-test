@@ -34,7 +34,7 @@ export default {
   watch: {
     selectedId (newValue) {
       const selectedCoordinates = this.$refs[`item-${newValue}`][0].$el.offsetTop
-      this.$el.scrollTo({ top: selectedCoordinates, behavior: 'smooth'})
+      this.$el.scrollTo?.({ top: selectedCoordinates, behavior: 'smooth'})
     }
   }
 }
